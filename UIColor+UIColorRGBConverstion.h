@@ -5,12 +5,21 @@
 //  Copyright (c) 2014 Jesus Rodriguez. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 #import <UIKit/UIKit.h>
-
 @interface UIColor (UIColorRGBConverstion)
 
-+ (UIColor *)getUIColorFromRed:(float)red Green:(float)green Blue:(float)blue Alpha:(float)alpha;
+#elif TARGET_OS_MAC
+#import <AppKit/AppKit.h>
+@interface NSColor (UIColorRGBConverstion)
+#endif
 
-+ (UIColor *)getUIColorFromRed:(float)red Green:(float)green Blue:(float)blue;
++ (instancetype)colorFromRed:(float)red Green:(float)green Blue:(float)blue Alpha:(float)alpha;
+
++ (instancetype)colorFromRed:(float)red Green:(float)green Blue:(float)blue;
+
+// Deprecated for platfrom independent method names
++ (instancetype)getUIColorFromRed:(float)red Green:(float)green Blue:(float)blue Alpha:(float)alpha;
++ (instancetype)getUIColorFromRed:(float)red Green:(float)green Blue:(float)blue;
 
 @end
